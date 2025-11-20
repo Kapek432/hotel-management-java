@@ -1,106 +1,137 @@
-================================================================================
-                    HOTEL MANAGEMENT SYSTEM - README
-================================================================================
+# HOTEL MANAGEMENT SYSTEM - README
 
-AUTOR: Kacper Lipiec
-DATA: 17 Listopada 2025
+**AUTHOR:** Kacper Lipiec  
+**DATE:** November 17, 2025
 
-================================================================================
-                          BUDOWANIE PROJEKTU
-================================================================================
+---
 
-Podstawowy build:
-    mvn clean install
+## BUILDING THE PROJECT
 
-Build z analizą SonarQube:
-    UWAGA: Przed uruchomieniem analizy SonarQube należy najpierw uruchomić
-    serwer SonarQube
+**Basic build:**
+```bash
+mvn clean install
+````
 
-    1. Uruchom serwer SonarQube:
-       - Windows: StartSonar.bat (w katalogu bin SonarQube)
-       - Linux/Mac: ./sonar.sh start
+**Build with SonarQube analysis:**
+**NOTE:** Before running SonarQube analysis, start the SonarQube server first.
 
-    2. Poczekaj, aż serwer się uruchomi (sprawdź http://localhost:9000)
+1. Start the SonarQube server:
 
-    3. Uruchom build z analizą:
-       mvn clean install sonar:sonar
+   * Windows: `StartSonar.bat` (in SonarQube `bin` directory)
+   * Linux/Mac: `./sonar.sh start`
 
-    Jeśli serwer SonarQube nie jest uruchomiony, użyj podstawowego buildu.
+2. Wait until the server starts (check [http://localhost:9000](http://localhost:9000))
 
-================================================================================
-                       URUCHAMIANIE APLIKACJI
-================================================================================
+3. Run the build with analysis:
 
-    java -jar hotel-main/target/hotel-main-1.0-SNAPSHOT.jar
+```bash
+mvn clean install sonar:sonar
+```
 
-Dostępne komendy w aplikacji:
-    checkin, checkout, view, list, prices, save, load, exit
+If the SonarQube server is not running, use the basic build.
 
-================================================================================
-                          FORMAT PLIKU CSV
-================================================================================
+---
 
-Plik CSV zawiera 12 kolumn:
-1.  RoomNumber              - Numer pokoju
-2.  Description             - Typ pokoju
-3.  Price                   - Cena za noc
-4.  Capacity                - Liczba gości
-5.  Occupied                - true/false
-6.  MainGuestFirstName      - Imię
-7.  MainGuestLastName       - Nazwisko
-8.  CheckInDate             - Format: YYYY-MM-DD
-9.  CheckOutDate            - Format: YYYY-MM-DD
-10. StayDuration            - Liczba dni
-11. AdditionalInfo          - Dodatkowe informacje
-12. AdditionalGuestsCount   - Liczba dodatkowych gości
+## RUNNING THE APPLICATION
 
-Przykład (pokój zajęty):
-    101,Single,150.0,1,true,Kacper,Lipic,2025-11-01,2025-11-04,3,VIP,0
+```bash
+java -jar hotel-main/target/hotel-main-1.0-SNAPSHOT.jar
+```
 
-Przykład (pokój wolny):
-    102,Double,250.0,2,false,,,,,,,0
+Available commands in the application:
+`checkin`, `checkout`, `view`, `list`, `prices`, `save`, `load`, `exit`
 
-================================================================================
-                    KONFIGURACJA SONARQUBE
-================================================================================
+---
 
-1. Uruchom SonarQube.
+## CSV FILE FORMAT
 
-2. Ustaw token:
+The CSV file contains 12 columns:
 
-    Windows PowerShell:
-        $env:SONAR_TOKEN="wygenerowany-token"
+| Column                | Description                 |
+| --------------------- | --------------------------- |
+| RoomNumber            | Room number                 |
+| Description           | Room type                   |
+| Price                 | Price per night             |
+| Capacity              | Number of guests            |
+| Occupied              | true/false                  |
+| MainGuestFirstName    | First name of main guest    |
+| MainGuestLastName     | Last name of main guest     |
+| CheckInDate           | Format: YYYY-MM-DD          |
+| CheckOutDate          | Format: YYYY-MM-DD          |
+| StayDuration          | Number of days              |
+| AdditionalInfo        | Extra information           |
+| AdditionalGuestsCount | Number of additional guests |
 
-    Lub edytuj pom.xml i zamień:
-        <sonar.token>${env.SONAR_TOKEN}</sonar.token>
-    na:
-        <sonar.token>wygenerowany-token</sonar.token>
+**Example (occupied room):**
 
-4. Uruchom analizę:
-    mvn clean install sonar:sonar
+```
+101,Single,150.0,1,true,Kacper,Lipiec,2025-11-01,2025-11-04,3,VIP,0
+```
 
-5. Zobacz wyniki:
-    http://localhost:9000/dashboard?id=hotel-management
+**Example (vacant room):**
 
-================================================================================
-                      GENEROWANIE DOKUMENTACJI
-================================================================================
+```
+102,Double,250.0,2,false,,,,,,,0
+```
 
-Javadoc:
-    mvn javadoc:aggregate
-    Lokalizacja: target/site/apidocs/index.html
+---
 
-================================================================================
-                        STRUKTURA PROJEKTU
-================================================================================
+## SONARQUBE CONFIGURATION
 
+1. Start SonarQube.
+
+2. Set the token:
+
+**Windows PowerShell:**
+
+```powershell
+$env:SONAR_TOKEN="generated-token"
+```
+
+Or edit `pom.xml` and replace:
+
+```xml
+<sonar.token>${env.SONAR_TOKEN}</sonar.token>
+```
+
+with
+
+```xml
+<sonar.token>generated-token</sonar.token>
+```
+
+3. Run analysis:
+
+```bash
+mvn clean install sonar:sonar
+```
+
+4. View results:
+   [http://localhost:9000/dashboard?id=hotel-management](http://localhost:9000/dashboard?id=hotel-management)
+
+---
+
+## GENERATING DOCUMENTATION
+
+**Javadoc:**
+
+```bash
+mvn javadoc:aggregate
+```
+
+Location: `target/site/apidocs/index.html`
+
+---
+
+## PROJECT STRUCTURE
+
+```
 hotel-management/
 ├── pom.xml                          # Parent POM
-├── readme.txt                       # Ten plik
-├── hotel-utils/                     # Moduł utilities (MyMap)
-├── hotel-main/                      # Moduł główny aplikacji
-├── hotel_states/                    # Przykładowe pliki CSV stanów hoteli
-├── javadoc/target/site/apidocs/index.html     # Dokumentacja Javadoc
-└── sonar-qube/                      # Raport SonarQube PDF
-
-================================================================================
+├── README.md                        # This file
+├── hotel-utils/                     # Utilities module (MyMap)
+├── hotel-main/                      # Main application module
+├── hotel_states/                    # Sample CSV hotel state files
+├── javadoc/target/site/apidocs/     # Javadoc documentation
+└── sonar-qube/                      # SonarQube PDF reports
+```
