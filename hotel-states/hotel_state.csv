@@ -1,0 +1,11 @@
+RoomNumber,Description,Price,Capacity,Occupied,MainGuestFirstName,MainGuestLastName,CheckInDate,CheckOutDate,StayDuration,AdditionalInfo,AdditionalGuestsCount
+101,Single,150.0,1,true,John,Doe,2025-11-01,2025-11-04,3,VIP,0
+102,Single,150.0,1,false,,,,,,,0
+103,Double,250.0,2,true,Alice,Smith,2025-10-30,2025-11-02,3,Business,1
+104,Deluxe,700.0,4,false,,,,,,,0
+201,Double,300.0,2,true,Bob,Johnson,2025-11-01,2025-11-05,4,,1
+202,Triple,400.0,3,false,,,,,,,0
+203,Triple,400.0,3,true,Maria,Garcia,2025-10-28,2025-11-03,6,Family,2
+301,Suite,600.0,4,true,Kacper,Lipiec,2025-12-10,2025-12-15,5,VIP,0
+302,Deluxe,500.0,2,true,Harry,Kane,2025-12-10,2025-12-15,5,,1
+303,Suite,600.0,4,true,Emma,Wilson,2025-10-31,2025-11-06,6,VIP,3
